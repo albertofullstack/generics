@@ -21,6 +21,9 @@ public class CopyArrayApp {
     List<Integer> destination = new ArrayList<>();
     copy(source, destination);
     System.out.println(destination);
+
+    List<String> strings = new ArrayList<>();
+    copy(strings, strings);
   }
 
 }
