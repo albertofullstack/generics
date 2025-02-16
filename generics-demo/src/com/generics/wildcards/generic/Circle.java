@@ -1,4 +1,4 @@
-package com.generics.wildcards;
+package com.generics.wildcards.generic;
 
 public class Circle implements Shape {
 
