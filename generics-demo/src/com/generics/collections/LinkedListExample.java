@@ -1,7 +1,6 @@
-package com.generics.lists;
+package com.generics.collections;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class LinkedListExample {
 

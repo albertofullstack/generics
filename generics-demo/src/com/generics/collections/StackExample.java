@@ -1,4 +1,4 @@
-package com.generics.lists;
+package com.generics.collections;
 
 import java.util.Stack;
 

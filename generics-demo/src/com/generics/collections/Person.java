@@ -1,4 +1,4 @@
-package com.generics.lists;
+package com.generics.collections;
 
 public class Person implements Comparable<Person> {
 

@@ -1,8 +1,7 @@
-package com.generics.lists;
+package com.generics.collections;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
 
 public class ArrayDequeExample {
 

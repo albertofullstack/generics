@@ -1,4 +1,4 @@
-package com.generics.lists.exercise6;
+package com.generics.collections.exercise6;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
