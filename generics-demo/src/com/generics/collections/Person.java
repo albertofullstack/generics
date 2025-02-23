@@ -1,5 +1,7 @@
 package com.generics.collections;
 
+import java.util.Objects;
+
 public class Person implements Comparable<Person> {
 
   private String name;
@@ -37,6 +39,32 @@ public class Person implements Comparable<Person> {
         "name='" + name + '\'' +
         ", age=" + age +
         '}';
+  }
+
+  // THERE ARE SOME RULES
+  // 1) if two objects are the same then they must have the same hash code
+  // 2) if two objects have the same hash code they may or may not be equal
+
+  @Override
+  // in a hashmap it may happen (because of collisions)
+  // that we have to find the item (Person) in a linked list
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Person person = (Person) o;
+    return age == person.age && Objects.equals(name, person.name);
+  }
+
+  @Override
+  public int hashCode() {
+    // hashCode  = hash function
+    // it calculates an array index based on the key (keys==Person objects)
+    // avoid clustering with prime numbers (31 for example)
+    return Objects.hash(name, age);
   }
 
   @Override
