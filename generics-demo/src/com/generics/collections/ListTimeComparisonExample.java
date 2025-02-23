@@ -1,9 +1,9 @@
-package com.generics.collections.exercise6;
+package com.generics.collections;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class TimeComparisonExample {
+public class ListTimeComparisonExample {
 
   public static void main(String[] args) {
 
