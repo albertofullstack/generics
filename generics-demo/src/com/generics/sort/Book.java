@@ -1,6 +1,6 @@
 package com.generics.sort;
 
-public class Book implements Comparable<Book> {
+public class Book {
 
   private String authorName;
   private String title;
@@ -33,15 +33,15 @@ public class Book implements Comparable<Book> {
         '}';
   }
 
-  @Override
-  public int compareTo(Book o) {
-//    return Integer.compare(this.numOfPages, o.getNumOfPages());
-//    return this.title.compareTo(o.getTitle());
-    if (this.numOfPages > o.getNumOfPages()) {
-      return -1;
-    } else if (this.numOfPages < o.getNumOfPages()) {
-      return 1;
-    }
-    return 0;
-  }
+//  @Override
+//  public int compareTo(Book o) {
+////    return Integer.compare(this.numOfPages, o.getNumOfPages());
+////    return this.title.compareTo(o.getTitle());
+//    if (this.numOfPages > o.getNumOfPages()) {
+//      return -1;
+//    } else if (this.numOfPages < o.getNumOfPages()) {
+//      return 1;
+//    }
+//    return 0;
+//  }
 }
