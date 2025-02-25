@@ -1,5 +1,6 @@
 package com.generics.collectionmethods.exercise7;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +40,8 @@ public class Cache {
   }
 
   public void showCache() {
-    System.out.println("Final cache");
+    System.out.println("Final cache - most recent elements first");
+    Collections.reverse(cache);
     for(Pair pair : cache)
       System.out.println(pair);
   }
