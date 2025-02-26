@@ -1,12 +1,11 @@
 package com.generics.streams;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BookStreamExample {
+public class IterationExample {
 
   public static void main(String[] args) {
 
@@ -19,11 +18,21 @@ public class BookStreamExample {
     books.add(new Book("Death of Virgil", "Hermann Broch", 590, Type.NOVEL));
     books.add(new Book("The Stranger", "Albert Camus", 560, Type.NOVEL));
 
-    List<String> result = books.stream().filter(book -> Type.NOVEL.equals(book.getType()))
-        .sorted(Comparator.comparing(Book::getPages))
-        .map(Book::getTitle)
-        .collect(Collectors.toList());
-    
-    result.stream().forEach(System.out::println);
+    // external iteration (collections)
+    List<String> titles = new ArrayList<>();
+
+    Iterator<Book> iterator = books.iterator();
+
+    // inherently sequential
+    // [item1, item2, item3, item4]
+    // no parallelization
+    while (iterator.hasNext()) {
+      titles.add(iterator.next().getTitle());
+    }
+
+    // Stream API - internal iteration
+    // parallel quiet easily
+    List<String> titles2 = books.stream().map(Book::getTitle).collect(Collectors.toList());
+    titles2.forEach(System.out::println);
   }
 }

@@ -1,12 +1,11 @@
 package com.generics.streams;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BookStreamExample {
+public class BookGroupByExample {
 
   public static void main(String[] args) {
 
@@ -19,11 +18,11 @@ public class BookStreamExample {
     books.add(new Book("Death of Virgil", "Hermann Broch", 590, Type.NOVEL));
     books.add(new Book("The Stranger", "Albert Camus", 560, Type.NOVEL));
 
-    List<String> result = books.stream().filter(book -> Type.NOVEL.equals(book.getType()))
-        .sorted(Comparator.comparing(Book::getPages))
-        .map(Book::getTitle)
-        .collect(Collectors.toList());
-    
-    result.stream().forEach(System.out::println);
+    Map<Type, List<Book>> booksByType = books.stream().collect(Collectors.groupingBy(Book::getType));
+    booksByType.entrySet().stream().forEach(System.out::println);
+
+    List<String> longestBooks = books.stream().filter(book -> book.getPages() > 500)
+        .map(Book::getTitle).limit(2).collect(Collectors.toList());
+    longestBooks.stream().forEach(System.out::println);
   }
 }
