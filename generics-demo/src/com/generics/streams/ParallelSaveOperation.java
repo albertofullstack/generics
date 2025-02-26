@@ -1,8 +1,10 @@
 package com.generics.streams;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +17,8 @@ public class ParallelSaveOperation {
   public static void main(String[] args) throws IOException {
 
     // create the directory
-    Files.createDirectories(Paths.get(DIRECTORY));
+    Path path = Paths.get(DIRECTORY);
+    Files.createDirectories(path);
 
     ParallelSaveOperation app = new ParallelSaveOperation();
 
@@ -26,12 +29,14 @@ public class ParallelSaveOperation {
     long start = System.currentTimeMillis();
     people.stream().forEach(ParallelSaveOperation::save);
     System.out.println("Time taken sequential: " + (System.currentTimeMillis() - start));
+    deleteDirectory(new File(DIRECTORY));
+    Files.createDirectories(path);
 
     // sequential algorithm
     start = System.currentTimeMillis();
     people.stream().parallel().forEach(ParallelSaveOperation::save);
-    System.out.println("Time taken sequential: " + (System.currentTimeMillis() - start));
-
+    System.out.println("Time taken parallel: " + (System.currentTimeMillis() - start));
+    deleteDirectory(new File(DIRECTORY));
   }
 
   private static void save(Person person) {
@@ -48,5 +53,14 @@ public class ParallelSaveOperation {
         .collect(Collectors.toList());
   }
 
+  static boolean deleteDirectory(File directoryToBeDeleted) {
+    File[] allContents = directoryToBeDeleted.listFiles();
+    if (allContents != null) {
+      for (File file : allContents) {
+        deleteDirectory(file);
+      }
+    }
+    return directoryToBeDeleted.delete();
+  }
 
 }
