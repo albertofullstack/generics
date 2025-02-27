@@ -1,5 +1,11 @@
 package com.generics.reflection;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.reflect.Method;
+
 public class ReflectionExample1 {
 
   public static void main(String[] args) {
@@ -17,6 +23,21 @@ public class ReflectionExample1 {
     }
     System.out.println(personClass2.getName());
     checkClass(new Car());
+
+    System.out.println(personClass2.getSuperclass().getName());
+
+    // to get interfaces call to getInterfaces()
+    Class[] interfaces = personClass2.getInterfaces();
+    for (Class inter : interfaces) {
+      System.out.println(inter.getName());
+    }
+
+    Method[] methods = personClass2.getMethods();
+    for (Method method : methods) {
+      if (method.isAnnotationPresent(MyAnnotation.class)) {
+        System.out.println(method.getName());
+      }
+    }
   }
 
   public static void checkClass(Vehicle vehicle) {

@@ -1,6 +1,17 @@
 package com.generics.reflection;
 
-public class Person {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface MyAnnotation {
+  public String name();
+}
+
+public class Person extends Employee {
 
   private String name;
   private int age;
@@ -21,6 +32,7 @@ public class Person {
     this.age = age;
   }
 
+  @MyAnnotation(name = "myAnnotation")
   public String returnName() {
     return this.name + "is the name";
   }
